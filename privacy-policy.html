@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lekka — Privacy Policy</title>
+<meta name="description" content="Lekka reads your bank's SMS alerts on your phone and keeps a ledger. Your messages never leave your device.">
+<style>
+  /* No web fonts, no CDN, no analytics: a privacy policy that calls a third party to
+     render itself is an argument against its own contents. */
+  :root {
+    color-scheme: light dark;
+    --ink: #14202a;
+    --ink-dim: #5a6b78;
+    --bg: #fbfcfd;
+    --rule: #d5dde4;
+    --mark: #6d4df6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e6eef4;
+      --ink-dim: #9aabb8;
+      --bg: #0b1219;
+      --rule: #24323e;
+      --mark: #b9a8ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 6rem;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
+  h1 { font-size: 1.95rem; line-height: 1.2; margin: 0 0 .35rem; letter-spacing: -.015em; }
+  h2 { font-size: 1.2rem; margin: 2.75rem 0 .75rem; letter-spacing: -.01em; }
+  h3 { font-size: 1.02rem; margin: 1.75rem 0 .5rem; }
+  p, li { overflow-wrap: break-word; }
+  .meta { color: var(--ink-dim); font-size: .92rem; margin: 0 0 .2rem; }
+  .lede { font-size: 1.05rem; }
+  /* Wide content scrolls inside itself; the page body never scrolls sideways. */
+  .scroll { overflow-x: auto; margin: 1.1rem 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; }
+  th, td { border: 1px solid var(--rule); padding: .55rem .7rem; text-align: left; vertical-align: top; }
+  th { font-weight: 600; }
+  ul, ol { padding-left: 1.3rem; }
+  li { margin: .35rem 0; }
+  a { color: var(--mark); }
+  footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--ink-dim); font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<h1>Lekka — Privacy Policy</h1>
+<p class="meta"><strong>Effective date:</strong> 16 August 2026</p>
+<p class="meta"><strong>Applies to:</strong> Lekka for Android, in India.</p>
+
+<p>Lekka is published by Der Jidan, an individual developer based in Karwar, Karnataka,
+India. Throughout this policy, “I” means that person and “Lekka” means the app.</p>
+
+<h2>The short version</h2>
+
+<p class="lede">Lekka reads your bank’s SMS alerts on your phone, works out what you spent,
+and keeps a ledger. <strong>Your messages never leave your device.</strong> There is no
+account, no login, and no server holding your spending.</p>
+
+<p>I cannot see your transactions. Not because I promise not to look — because the app has no
+internet permission and cannot send them anywhere.</p>
+
+<h2>1. What Lekka reads, and where it goes</h2>
+
+<p>Lekka needs SMS permission. Here is exactly what it does with it.</p>
+
+<div class="scroll">
+<table>
+  <tr><th>Read</th><td>Messages in your inbox from a list of known bank and payment senders</td></tr>
+  <tr><th>Ignored entirely</th><td>Everything from any other sender — never parsed, never stored</td></tr>
+  <tr><th>Extracted</th><td>Amount, date, payee name, last four digits of the account, reference number</td></tr>
+  <tr><th>Stored</th><td>The extracted fields above, on your phone only</td></tr>
+  <tr><th>Never stored</th><td>The text of the message itself</td></tr>
+  <tr><th>Never transmitted</th><td>All of the above</td></tr>
+</table>
+</div>
+
+<p>The message body is never written to storage. Lekka keeps a one-way SHA-256 fingerprint of
+each message so it can tell when the same alert arrives twice; a fingerprint cannot be turned
+back into the message.</p>
+
+<p>Messages that are not transactions — one-time passwords, promotional messages, balance
+notices, card statements — are recognised and discarded before anything is stored.</p>
+
+<h2>2. What is on your phone</h2>
+
+<p>Your ledger is stored in an encrypted database on your device (SQLCipher). The encryption
+key is held in the Android Keystore, which is hardware-backed on most modern phones. Neither
+the key nor the database leaves your phone.</p>
+
+<p>Uninstalling Lekka deletes it.</p>
+
+<h2>3. What leaves your device</h2>
+
+<p><strong>Nothing.</strong> Not “nothing important”, not “nothing without your consent” —
+nothing.</p>
+
+<p>Lekka does not hold Android’s internet permission. It cannot open a network connection at
+all: not to me, not to anyone. That is not a policy I am choosing to follow, it is a
+restriction the operating system enforces on the app whatever the app tries to do. You can
+check it yourself in Android’s app info screen, and the app says so in its own Settings.</p>
+
+<p>There is no account to sign into, nothing to sync, and no server holding your spending
+because there is no server.</p>
+
+<h3>3.1 Payments</h3>
+
+<p>There is no paid tier today, and Lekka takes no money. The app contains no billing code of
+any kind, which is why its Play listing declares no in-app purchases — another claim you can
+check rather than take on trust.</p>
+
+<p>If a paid tier is ever added it will run through Google Play’s own billing flow: card
+details would go to Google and never to me, and I would have no way to receive them. This
+policy will be updated before that ships rather than after.</p>
+
+<h3>3.2 What may be added later, and what it would mean</h3>
+
+<p>When a bank changes the wording of its alerts, Lekka stops recognising them. Fixing that
+faster would be easier if I could see the <em>shape</em> of a message that failed to parse.</p>
+
+<p>That feature is not built. If it ships, it will be <strong>opt-in and off by
+default</strong>, it will require the internet permission this app does not currently request,
+and this policy will be updated before it ships rather than after. What would be sent is a
+version of the message with <strong>every digit destroyed</strong> — no amounts, no account
+numbers, no names, no UPI IDs — and only for messages that failed. Messages Lekka understood
+teach me nothing and would never be eligible.</p>
+
+<p>I describe it here because it is the honest shape of my intent, not because it is running.
+Today, nothing leaves.</p>
+
+<h2>4. What Lekka never does</h2>
+
+<ol>
+  <li><strong>No advertising.</strong> No ad SDKs, no ad IDs, ever. This is a permanent
+      commitment, not a current state.</li>
+  <li><strong>No data brokers.</strong> Your information is not sold, rented, or shared for
+      anyone’s marketing.</li>
+  <li><strong>No analytics on your spending.</strong> I do not measure what you buy or
+      where.</li>
+  <li><strong>No third-party SDK can read your messages.</strong> There are none in the app
+      with that access.</li>
+  <li><strong>Lekka never holds, routes, or moves money.</strong> It cannot make a payment. It
+      reads alerts about payments you made yourself. When you record money moved into a
+      savings goal, you moved it — in your own banking app — and told Lekka afterwards.</li>
+</ol>
+
+<h2>5. Your data, your control</h2>
+
+<ul>
+  <li><strong>Export</strong> — everything, any time, free, permanently. That does not change
+      if a paid tier is ever introduced and you leave it. Settings → Your data → Export my
+      data. You get ordinary spreadsheet files; you do not need Lekka to read them, now or
+      ever.</li>
+  <li><strong>Delete</strong> — uninstalling removes the database and everything in it.</li>
+  <li><strong>Correct</strong> — every transaction Lekka files can be recategorised or
+      removed, and any merchant renamed. Nothing it decides is final. Tap any row in your
+      ledger.</li>
+</ul>
+
+<p>Because there is no account and no server copy, there is nothing for me to delete on your
+behalf. If a server-side account is ever introduced, this policy will be updated before it
+ships, not after.</p>
+
+<h2>6. Children</h2>
+
+<p>Lekka is not directed at children and is not intended for anyone under 18.</p>
+
+<h2>7. Changes to this policy</h2>
+
+<p>The effective date at the top always reflects the current version. If this policy changes
+in a way that affects what Lekka does with your data, the change will be made here before the
+behaviour changes in the app, not after.</p>
+
+<h2>8. Contact and grievances</h2>
+
+<p>Under the Digital Personal Data Protection Act, 2023, you may contact me about how your
+data is handled, and you may escalate to the Data Protection Board of India if you are not
+satisfied with the response.</p>
+
+<ul>
+  <li><strong>Grievance Officer:</strong> Der Jidan</li>
+  <li><strong>Email:</strong> <a href="mailto:derfintechsolutions@gmail.com">derfintechsolutions@gmail.com</a></li>
+  <li><strong>Postal address:</strong><br>
+      Der Jidan<br>
+      07, Shree Ashapura<br>
+      Bank Gate, Arga<br>
+      Karwar, Karnataka 581308<br>
+      India</li>
+  <li><strong>Response time:</strong> I will acknowledge your query within 3 working days and
+      respond substantively within 30 days.</li>
+</ul>
+
+<footer>
+  Lekka for Android · Privacy policy effective 16 August 2026
+</footer>
+
+</body>
+</html>
