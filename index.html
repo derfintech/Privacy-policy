@@ -55,7 +55,7 @@
 <body>
 
 <h1>Lekka — Privacy Policy</h1>
-<p class="meta"><strong>Effective date:</strong> 16 August 2026</p>
+<p class="meta"><strong>Effective date:</strong> 23 September 2026</p>
 <p class="meta"><strong>Applies to:</strong> Lekka for Android, in India.</p>
 
 <p>Lekka is published by Der Jidan, an individual developer based in Karwar, Karnataka,
@@ -67,8 +67,12 @@ India. Throughout this policy, “I” means that person and “Lekka” means t
 and keeps a ledger. <strong>Your messages never leave your device.</strong> There is no
 account, no login, and no server holding your spending.</p>
 
-<p>I cannot see your transactions. Not because I promise not to look — because the app has no
-internet permission and cannot send them anywhere.</p>
+<p>I cannot see your transactions. Not because I promise not to look — because the app never
+sends them anywhere, and contains no code that could.</p>
+
+<p>One thing changed in this version: Lekka now counts four anonymous events so I can see
+where people get stuck during setup. Your ledger is not part of that and never will be.
+Section 3 lists all four, in full.</p>
 
 <h2>1. What Lekka reads, and where it goes</h2>
 
@@ -102,18 +106,55 @@ the key nor the database leaves your phone.</p>
 
 <h2>3. What leaves your device</h2>
 
-<p><strong>Nothing.</strong> Not “nothing important”, not “nothing without your consent” —
-nothing.</p>
+<p><strong>Nothing from your ledger.</strong> Not an amount, not a payee, not a message, not
+a balance, not a category, not a goal. None of it, by any route, ever.</p>
 
-<p>Lekka does not hold Android’s internet permission. It cannot open a network connection at
-all: not to me, not to anyone. That is not a policy I am choosing to follow, it is a
-restriction the operating system enforces on the app whatever the app tries to do. You can
-check it yourself in Android’s app info screen, and the app says so in its own Settings.</p>
+<p>There is still no account to sign into, nothing to sync, and no server holding your
+spending, because there is no server. I have no database of your transactions and no way to
+build one.</p>
 
-<p>There is no account to sign into, nothing to sync, and no server holding your spending
-because there is no server.</p>
+<p>What does leave, from this version onward, is a count of four events, sent to Google
+Analytics for Firebase. I use it to see where people abandon setup. This is why Lekka now
+holds Android’s internet permission, which earlier versions did not — and it is the only
+reason.</p>
 
-<h3>3.1 Payments</h3>
+<h3>3.1 The four events, in full</h3>
+
+<p>This is not a summary. The app has exactly four analytics calls and these are all of
+them:</p>
+
+<div class="scroll">
+<table>
+  <tr><th>You allowed SMS access</th><td>nothing</td></tr>
+  <tr><th>You did not allow SMS access</th><td>whether you declined at Android’s own dialog, or skipped before reaching it</td></tr>
+  <tr><th>Setup finished</th><td>whether SMS reading ended up switched on or off</td></tr>
+  <tr><th>An expense was added</th><td>whether you typed it, confirmed it from a bank message, or filed it from a notification — and whether it had a category</td></tr>
+</table>
+</div>
+
+<p>No amount. No payee. No merchant. No category name. No account number. No text from any
+message. Not in these events and not anywhere else.</p>
+
+<p>That is enforced by how the code is written, not only by intent: there is no
+general-purpose “log this” call in the app. Each of the four is a separate method that
+<strong>cannot accept</strong> a sum of money, a name, or a piece of text, so there is no
+route by which one could be added by mistake. Adding a fifth event means writing a fifth
+method, which is a change anyone reading the code can see.</p>
+
+<h3>3.2 What Google records on its own</h3>
+
+<p>Any app using this tool also reports, without the app asking: a per-install identifier,
+your device model, your Android version, the app version, and an approximate country worked
+out from your IP address.</p>
+
+<p>Lekka switches off the parts of that which follow a person between apps — the advertising
+ID, the Android ID (SSAID), and ad-personalisation signals — and the advertising-ID
+permission is removed from the app entirely, so it is not merely unused but absent.</p>
+
+<p><strong>There is no in-app switch to turn analytics off today.</strong> I would rather
+write that plainly than imply a control that does not exist.</p>
+
+<h3>3.3 Payments</h3>
 
 <p>There is no paid tier today, and Lekka takes no money. The app contains no billing code of
 any kind, which is why its Play listing declares no in-app purchases — another claim you can
@@ -123,20 +164,19 @@ check rather than take on trust.</p>
 details would go to Google and never to me, and I would have no way to receive them. This
 policy will be updated before that ships rather than after.</p>
 
-<h3>3.2 What may be added later, and what it would mean</h3>
+<h3>3.4 What may be added later, and what it would mean</h3>
 
 <p>When a bank changes the wording of its alerts, Lekka stops recognising them. Fixing that
 faster would be easier if I could see the <em>shape</em> of a message that failed to parse.</p>
 
 <p>That feature is not built. If it ships, it will be <strong>opt-in and off by
-default</strong>, it will require the internet permission this app does not currently request,
-and this policy will be updated before it ships rather than after. What would be sent is a
+default</strong>, and this policy will be updated before it ships rather than after. What would be sent is a
 version of the message with <strong>every digit destroyed</strong> — no amounts, no account
 numbers, no names, no UPI IDs — and only for messages that failed. Messages Lekka understood
 teach me nothing and would never be eligible.</p>
 
 <p>I describe it here because it is the honest shape of my intent, not because it is running.
-Today, nothing leaves.</p>
+Today, nothing from a message leaves — only the four counts in §3.1.</p>
 
 <h2>4. What Lekka never does</h2>
 
@@ -145,10 +185,13 @@ Today, nothing leaves.</p>
       commitment, not a current state.</li>
   <li><strong>No data brokers.</strong> Your information is not sold, rented, or shared for
       anyone’s marketing.</li>
-  <li><strong>No analytics on your spending.</strong> I do not measure what you buy or
-      where.</li>
-  <li><strong>No third-party SDK can read your messages.</strong> There are none in the app
-      with that access.</li>
+  <li><strong>No analytics on your spending.</strong> The counts described in §3.1 measure
+      what you <em>did</em> — allowed a permission, finished setup, added an expense. They
+      never measure what you bought, where, or for how much. No amount or merchant name is
+      sent, in any event, ever.</li>
+  <li><strong>No third-party SDK can read your messages.</strong> Google Analytics is the
+      only third-party component in the app. It has no access to your messages, your ledger,
+      or the database, and what it can send is the closed list in §3.1.</li>
   <li><strong>Lekka never holds, routes, or moves money.</strong> It cannot make a payment. It
       reads alerts about payments you made yourself. When you record money moved into a
       savings goal, you moved it — in your own banking app — and told Lekka afterwards.</li>
@@ -167,9 +210,18 @@ Today, nothing leaves.</p>
       ledger.</li>
 </ul>
 
-<p>Because there is no account and no server copy, there is nothing for me to delete on your
-behalf. If a server-side account is ever introduced, this policy will be updated before it
-ships, not after.</p>
+<p>Because there is no account and no server copy of your ledger, there is nothing of your
+spending for me to delete on your behalf — I never had it.</p>
+
+<p>The one exception is the analytics counts in §3.1. Those sit on Google’s servers rather
+than mine, tied to a per-install identifier and not to you by name, phone number or email.
+Google deletes them on its own retention schedule; I can also erase the whole set from the
+Firebase console. If you want that done, write to the address in §8 — though be aware that
+without a name or an account attached, the honest thing I can offer is erasing everything
+rather than finding your rows specifically.</p>
+
+<p>If a server-side account is ever introduced, this policy will be updated before it ships,
+not after.</p>
 
 <h2>6. Children</h2>
 
